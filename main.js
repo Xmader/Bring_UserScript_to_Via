@@ -1,11 +1,22 @@
 const { UserScript1: _test_script } = require("./test.js")
+// const location = { href: "https://greasyfork.org/scripts/27819" }
+
 const { toBase64 } = require("./base64.js")
 
+const getGreasyforkId = () => {
+    if (typeof location != "undefined") {
+        const greasyfork_id = location.href.match(/greasyfork\.org\/.*scripts\/(\d+)/)
+        return greasyfork_id && greasyfork_id[1]
+    }
+}
+
 class ViaScript {
-    constructor(user_script) {
+    constructor(user_script, id = getGreasyforkId() || `${new Date().getTime()}`) {
         this.header = user_script
             .split("==UserScript==")[1]
             .split("==/UserScript==")[0]
+
+        this.id = id
 
         this.author = this.getHead("author")
         this.name = this.getHead("name")
@@ -31,6 +42,11 @@ class ViaScript {
             .join(",")
     }
 
+    setId(id) {
+        this.id = id
+        return this
+    }
+
     toString() {
         return JSON.stringify(this)
     }
@@ -39,8 +55,8 @@ class ViaScript {
         return Object.assign({}, this)
     }
 
-    static from(user_script) {
-        return new ViaScript(user_script)
+    static from(...args) {
+        return new ViaScript(...args)
     }
 }
 

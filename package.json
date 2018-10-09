@@ -1,6 +1,6 @@
 {
   "name": "bring_userscript_to_via",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "将 UserScript/油猴脚本 带到Via浏览器",
   "main": "main.js",
   "repository": {
