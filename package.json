@@ -14,10 +14,12 @@
   },
   "homepage": "https://github.com/Xmader/Bring_UserScript_to_Via#readme",
   "devDependencies": {
-    "http-server": "Xmader/http-server"
+    "http-server": "Xmader/http-server",
+    "rollup": "^0.66.5"
   },
   "scripts": {
     "dev": "http-server --cors -p 8083 -c-1 -s",
+    "build": "rollup main.js -o dist/bring_userscript_to_via.js --format iife --sourcemap",
     "release-minor": "npm version minor",
     "release-patch": "npm version patch"
   }

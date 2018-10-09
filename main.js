@@ -1,4 +1,12 @@
-const { UserScript1: _test_script, location } = require("./dev/test.js")
+/**
+ * Bring UserScript to Via Browser
+ * 将 UserScript/油猴脚本 带到Via浏览器
+ * 
+ * @author Xmader
+ * @copyright Copyright (c) 2018 Xmader
+ * 
+ * Source Code: https://github.com/Xmader/Bring_UserScript_to_Via
+ */
 
 const { toBase64 } = require("./base64.js")
 
@@ -34,21 +42,23 @@ class ViaScript {
     }
 
     /**
-     * @returns {String[]} 获取UserScript的所有`@match`元属性
+     * @returns {String[]} 获取UserScript的所有`@match`和`@include`元属性
      */
     getMatches() {
         const r = /@match\s+(.+)/g
+        const r1 = /@include\s+(.+)/g
 
-        return (this.header.match(r) || ["*"])
-            .map(x => x.replace(r, "$1"))
+        return (this.header.match(r) || this.header.match(r1) || ["*"])
+            .map(x => x.replace(r, "$1").replace(r1, "$1"))
     }
 
     getHosts() {
         const r = /@match.+:\/\/(.+)\//g
+        const r1 = /@include.+:\/\/(.+)\//g
 
         return new Set(
-            (this.header.match(r) || ["*"])
-                .map(x => x.replace(r, "$1"))
+            (this.header.match(r) || this.header.match(r1) || ["*"])
+                .map(x => x.replace(r, "$1").replace(r1, "$1"))
         )
 
     }
@@ -87,8 +97,7 @@ ${user_script.split("==/UserScript==")[1]}
     }
 }
 
-
-const init = (user_script = _test_script) => {
+const init = (user_script) => {
 
     if (!user_script.includes("==UserScript==") || !user_script.includes("==/UserScript==")) {
         return;
@@ -100,11 +109,19 @@ const init = (user_script = _test_script) => {
 
 if (getGreasyforkId()) {
     const install_btn = document.querySelector(".install-link")
-    install_btn.onclick = async () => {
-        const href = install_btn.href
-        install_btn.href = "#"
+    if (install_btn) {
+        install_btn.onclick = async () => {
+            const href = install_btn.href
+            install_btn.href = "#"
 
-        const user_script = await (await fetch(href)).text()
-        init(user_script)
+            const user_script = await (await fetch(href)).text()
+            init(user_script)
+        }
     }
+} else if (typeof location != "undefined" && location.pathname.endsWith(".js")) {
+    (async () => {
+        const user_script = await (await fetch(location.href)).text()
+        init(user_script)
+    })()
 }
+
