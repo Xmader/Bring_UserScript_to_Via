@@ -1,4 +1,5 @@
 // import babel from 'rollup-plugin-babel';
+import {version} from "./package.json"
 
 export default {
     input: "main.js",
@@ -11,7 +12,7 @@ export default {
 // ==UserScript==
 // @name         Bring UserScript to Via Browser
 // @namespace    https://www.xmader.com/
-// @version      0.3.5
+// @version      ${version}
 // @description  将 UserScript/油猴脚本 带到Via浏览器
 // @author       Xmader
 // @match        *://greasyfork.org/*

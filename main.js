@@ -97,7 +97,8 @@ const init = (user_script) => {
         return;
     }
 
-    console.log(ViaScript.from(user_script).toString())
+    // console.log(ViaScript.from(user_script).toObject())
+    window.via.addon(ViaScript.from(user_script).toString())
 
 }
 
