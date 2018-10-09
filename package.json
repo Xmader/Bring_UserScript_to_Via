@@ -1,6 +1,6 @@
 {
   "name": "bring_userscript_to_via",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "将 UserScript/油猴脚本 带到Via浏览器",
   "main": "main.js",
   "repository": {
@@ -13,8 +13,11 @@
     "url": "https://github.com/Xmader/Bring_UserScript_to_Via/issues"
   },
   "homepage": "https://github.com/Xmader/Bring_UserScript_to_Via#readme",
+  "devDependencies": {
+    "http-server": "Xmader/http-server"
+  },
   "scripts": {
-    "dev": "http-server --cors -p 8081 -c-1",
+    "dev": "http-server --cors -p 8083 -c-1 -s",
     "release-minor": "npm version minor",
     "release-patch": "npm version patch"
   }
