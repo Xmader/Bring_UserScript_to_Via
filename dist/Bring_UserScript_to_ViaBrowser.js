@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Bring UserScript to Via Browser
 // @namespace    https://www.xmader.com/
-// @version      1.0.0-rc.1
+// @version      1.0.0-rc.2
 // @description  将 UserScript/油猴脚本 带到Via浏览器
 // @author       Xmader
 // @match        *://greasyfork.org/*
@@ -65,8 +65,7 @@
     };
 
     /**
-     * Bring UserScript to Via Browser
-     * 将 UserScript/油猴脚本 带到Via浏览器
+     * @class ViaScript: 转换 UserScript/油猴脚本 到 Via浏览器脚本
      * 
      * @author Xmader
      * @copyright Copyright (c) 2018 Xmader
@@ -153,6 +152,16 @@ ${user_script.split("==/UserScript==")[1]}
             return new ViaScript(...args)
         }
     }
+
+    /**
+     * Bring UserScript to Via Browser
+     * 将 UserScript/油猴脚本 带到Via浏览器
+     * 
+     * @author Xmader
+     * @copyright Copyright (c) 2018 Xmader
+     * 
+     * Source Code: https://github.com/Xmader/Bring_UserScript_to_Via
+     */
 
     const init = (user_script) => {
 
