@@ -1,4 +1,4 @@
-const { UserScript1: _test_script } = require("./test.js")
+const { UserScript1: _test_script } = require("./dev/test.js")
 // const location = { href: "https://greasyfork.org/scripts/27819" }
 
 const { toBase64 } = require("./base64.js")
