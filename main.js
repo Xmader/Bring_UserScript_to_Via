@@ -98,7 +98,11 @@ const init = (user_script) => {
     }
 
     // console.log(ViaScript.from(user_script).toObject())
-    window.via.addon(ViaScript.from(user_script).toString())
+    window.via.addon(
+        toBase64(
+            ViaScript.from(user_script).toString()
+        )
+    )
 
 }
 
@@ -108,7 +112,7 @@ if (getGreasyforkId()) {
         install_btn.onclick = async () => {
             const href = encodeURI(install_btn.href)
             install_btn.attributes.removeNamedItem("href")
-            install_btn.style.cursor= "pointer"
+            install_btn.style.cursor = "pointer"
 
             const user_script = await (await fetch(href)).text()
             init(user_script)

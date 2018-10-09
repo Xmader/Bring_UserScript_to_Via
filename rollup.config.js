@@ -1,15 +1,11 @@
-import babel from "rollup-plugin-babel"
 import metainfo from "./src/metainfo.js"
 
 export default {
     input: "main.js",
     output: {
-        file: "dist/bring_userscript_to_via.js",
+        file: "dist/Bring_UserScript_to_ViaBrowser.js",
         format: "iife",
         // sourcemap: true,
         banner: metainfo
-    },
-    plugins: [
-        babel()
-    ]
+    }
 }

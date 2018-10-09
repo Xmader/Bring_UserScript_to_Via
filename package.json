@@ -1,6 +1,6 @@
 {
   "name": "bring_userscript_to_via",
-  "version": "0.4.1",
+  "version": "1.0.0-rc.1",
   "description": "将 UserScript/油猴脚本 带到Via浏览器",
   "main": "main.js",
   "repository": {
@@ -22,7 +22,8 @@
   },
   "scripts": {
     "dev": "http-server --cors -p 8083 -c-1 -s",
-    "build": "rollup -c",
+    "build": "rollup -c && npm run build-BabelCompiled",
+    "build-BabelCompiled": "rollup -c rollup.config.babel.js",
     "release-minor": "npm version minor",
     "release-patch": "npm version patch"
   }
