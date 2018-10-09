@@ -1,1 +1,7 @@
 theme: jekyll-theme-cayman
+title: Bring UserScript to Via Browser
+header_btns: 
+  - name: 讨论/反馈
+    url: https://github.com/Xmader/Bring_UserScript_to_Via/issues
+  - name: 安装
+    url: docs
