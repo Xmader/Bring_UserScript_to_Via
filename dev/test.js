@@ -28,7 +28,7 @@ const UserScript1 = `
         try {
             const banner = document.getElementById("banner_link")
             const banner_bg = banner.style["background-image"]
-            banner_img = banner_bg.split("\"")[1].replace("//", "https://")
+            banner_img = banner_bg.split("\\"")[1].replace("//", "https://")
         }
         catch (e) {
             const r = await fetch("https://api.bilibili.com/x/web-show/res/loc?id=142", { credentials: 'include' })
@@ -46,6 +46,10 @@ const UserScript1 = `
 
 `
 
+// const location = { href: "https://www.bilibili.com/video/av13925023/?p=8" }
+const location = { href: "https://greasyfork.org/zh-CN/scripts/372516/" }
+
 module.exports = {
-    UserScript1
+    UserScript1,
+    location
 }

@@ -1,5 +1,4 @@
-const { UserScript1: _test_script } = require("./dev/test.js")
-// const location = { href: "https://greasyfork.org/scripts/27819" }
+const { UserScript1: _test_script, location } = require("./dev/test.js")
 
 const { toBase64 } = require("./base64.js")
 
@@ -22,9 +21,9 @@ class ViaScript {
         this.name = this.getHead("name")
         this.info = this.getHead("description")
 
-        this.url = this.getUrls()
+        this.url = this.getHosts().size == 1 ? [...this.getHosts()][0] : "*"
 
-        this.code = toBase64(user_script.split("==/UserScript==")[1])
+        this.code = toBase64(this.getCode(user_script))
 
         delete this.header
     }
@@ -34,12 +33,40 @@ class ViaScript {
         return head ? head[1] : ""
     }
 
-    getUrls() {
-        const r = /@match.+:\/\/(.+)\//g
+    /**
+     * @returns {String[]} 获取UserScript的所有`@match`元属性
+     */
+    getMatches() {
+        const r = /@match\s+(.+)/g
 
         return (this.header.match(r) || ["*"])
             .map(x => x.replace(r, "$1"))
-            .join(",")
+    }
+
+    getHosts() {
+        const r = /@match.+:\/\/(.+)\//g
+
+        return new Set(
+            (this.header.match(r) || ["*"])
+                .map(x => x.replace(r, "$1"))
+        )
+
+    }
+
+    getCode(user_script) {
+
+        return `
+(function () {
+
+var matches = (['${this.getMatches().join("','")}']).map(function (x) {
+    return !!location.href.match(x.replace(/\\*/g, ".*"))
+})
+        
+if(!matches.includes(true)) return;
+
+${user_script.split("==/UserScript==")[1]}
+})();
+        `
     }
 
     setId(id) {
@@ -52,7 +79,7 @@ class ViaScript {
     }
 
     toObject() {
-        return Object.assign({}, this)
+        return { ...this }
     }
 
     static from(...args) {
@@ -69,8 +96,15 @@ const init = (user_script = _test_script) => {
 
     console.log(ViaScript.from(user_script).toString())
 
-
 }
 
+if (getGreasyforkId()) {
+    const install_btn = document.querySelector(".install-link")
+    install_btn.onclick = async () => {
+        const href = install_btn.href
+        install_btn.href = "#"
 
-init()
+        const user_script = await (await fetch(href)).text()
+        init(user_script)
+    }
+}
