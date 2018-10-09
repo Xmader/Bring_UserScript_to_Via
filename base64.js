@@ -1,5 +1,5 @@
 /**
- * Unicode字符串转base64, 兼容Node.js和浏览器
+ * Unicode字符串和Base64字符串互相转换, 兼容Node.js和浏览器
  * @author Xmader
  */
 
@@ -33,4 +33,6 @@ class Base64 {
 
 }
 
-module.exports = Base64
+export default Base64
+export const { toBase64 } = Base64
+export const { fromBase64 } = Base64

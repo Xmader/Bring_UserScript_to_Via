@@ -8,14 +8,8 @@
  * Source Code: https://github.com/Xmader/Bring_UserScript_to_Via
  */
 
-const { toBase64 } = require("./base64.js")
-
-const getGreasyforkId = () => {
-    if (typeof location != "undefined") {
-        const greasyfork_id = location.href.match(/greasyfork\.org\/.*scripts\/(\d+)/)
-        return greasyfork_id && greasyfork_id[1]
-    }
-}
+import { toBase64 } from "./base64.js"
+import getGreasyforkId from "./src/get_greasyfork_id.js"
 
 class ViaScript {
     constructor(user_script, id = getGreasyforkId() || `${new Date().getTime()}`) {
