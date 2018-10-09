@@ -23,6 +23,14 @@ class Base64 {
             }).join(""))
     }
 
+    encode(str) {
+        return Base64.toBase64(str)
+    }
+
+    decode(str) {
+        return Base64.fromBase64(str)
+    }
+
 }
 
 module.exports = Base64

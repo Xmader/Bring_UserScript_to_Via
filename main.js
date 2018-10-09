@@ -19,7 +19,8 @@ class ViaScript {
     }
 
     getHead(head_name) {
-        return this.header.match(`@${head_name}\\s+(.+)`)[1]
+        const head = this.header.match(`@${head_name}\\s+(.+)`)
+        return head ? head[1] : ""
     }
 
     getUrls() {
