@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Bring UserScript to Via Browser
 // @namespace    https://www.xmader.com/
-// @version      1.0.0-rc.2
+// @version      1.0.0-rc.3
 // @description  将 UserScript/油猴脚本 带到Via浏览器
 // @author       Xmader
 // @match        *://greasyfork.org/*
@@ -285,6 +285,15 @@
       key: "toObject",
       value: function toObject() {
         return _objectSpread({}, this);
+      }
+    }, {
+      key: "install",
+      value: function install() {
+        if (window && window.via) {
+          window.via.addon(toBase64(this.toString()));
+        } else {
+          throw new Error("安装失败: 需要使用Via浏览器");
+        }
       }
     }], [{
       key: "from",
