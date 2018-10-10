@@ -23,7 +23,3 @@ fs.writeFileSync(
     path.resolve(__dirname, "../dist/installer.js"),
     installation
 )
-
-fs.unlinkSync(
-    path.resolve(__dirname, "../dist/via_script.bundle.js")
-)

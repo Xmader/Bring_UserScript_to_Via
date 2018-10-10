@@ -1,6 +1,6 @@
-import { version, description } from "../package.json"
+const { version, description } = require("../package.json")
 
-export default `
+module.exports = `
 // ==UserScript==
 // @name         Bring UserScript to Via Browser
 // @namespace    https://www.xmader.com/

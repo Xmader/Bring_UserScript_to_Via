@@ -16,16 +16,15 @@
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
     "http-server": "Xmader/http-server",
     "rollup": "^0.66.5",
     "rollup-plugin-babel": "^4.0.3"
   },
   "scripts": {
     "dev": "http-server --cors -p 8083 -c-1 -s",
-    "build": "rollup -c && npm run build-main-babel",
-    "build-main-babel": "rollup -c rollup.config.babel.js",
-    "build-via_script.js":"rollup -i src/via_script.js -o dist/via_script.bundle.js --format cjs",
-    "build-installer":"npm run build-via_script.js && node dev/create_installer.js",
+    "build": "gulp",
     "release-minor": "npm version minor",
     "release-patch": "npm version patch"
   }
