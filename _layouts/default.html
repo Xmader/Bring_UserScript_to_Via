@@ -50,8 +50,10 @@
         </footer>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert"></script>
-    <script src="dist/installer.js"></script>
+    {% for src in site.external_scripts %}
+    <script src="{{src}}"></script>
+    {% endfor %}
+    
 </body>
 
 </html>
