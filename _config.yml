@@ -5,3 +5,6 @@ header_btns:
     url: https://github.com/Xmader/Bring_UserScript_to_Via/issues
   - name: 安装
     url: javascript:install()
+external_scripts:
+  - https://cdn.jsdelivr.net/npm/sweetalert
+  - dist/installer.js
