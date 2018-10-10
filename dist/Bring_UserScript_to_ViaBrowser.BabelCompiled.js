@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Bring UserScript to Via Browser
 // @namespace    https://www.xmader.com/
-// @version      1.0.0-rc.3
+// @version      1.0.0
 // @description  将 UserScript/油猴脚本 带到Via浏览器
 // @author       Xmader
 // @match        *://greasyfork.org/*

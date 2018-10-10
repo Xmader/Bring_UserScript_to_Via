@@ -6,13 +6,23 @@ const content = fs.readFileSync(
     path.resolve(__dirname, "../dist/Bring_UserScript_to_ViaBrowser.js")
 ).toString()
 
-const via_script = ViaScript.from(content).setId("65535").toString()
+const id = "65535"
+
+const via_script = ViaScript.from(content).setId(id).toString()
 
 const installation = `
+var install_txt = "安装成功！"
+if (window && window.via) {
+    if(window.via.getInstalledAddonID().indexOf(${+id}) > -1){
+        install_txt = "卸载成功！"
+        document.querySelectorAll(".btn")[2].innerText = "卸载"
+    }
+}
+
 function install() {
     if (window && window.via) {
         window.via.addon("${Buffer.from(via_script).toString("base64")}")
-        swal("安装成功！", "", "success")
+        swal(install_txt, "", "success")
     } else {
         swal("安装失败！", "需要使用Via浏览器", "error")
     }
