@@ -22,6 +22,7 @@ if (window && window.via) {
 function install() {
     if (window && window.via) {
         window.via.addon("${Buffer.from(via_script).toString("base64")}")
+        document.querySelectorAll(".btn")[2].innerText = install_txt == "卸载成功！" ? "安装" : "卸载"
         swal(install_txt, "", "success")
     } else {
         swal("安装失败！", "需要使用Via浏览器", "error")
