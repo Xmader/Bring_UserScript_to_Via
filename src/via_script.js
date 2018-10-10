@@ -85,6 +85,18 @@ ${user_script.split("==/UserScript==")[1]}
         return { ...this }
     }
 
+    install() {
+        if (window && window.via) {
+            window.via.addon(
+                toBase64(
+                    this.toString()
+                )
+            )
+        } else {
+            throw new Error("安装失败: 需要使用Via浏览器")
+        }
+    }
+
     static from(...args) {
         return new ViaScript(...args)
     }
