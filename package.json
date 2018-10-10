@@ -25,6 +25,7 @@
   "scripts": {
     "dev": "http-server --cors -p 8083 -c-1 -s",
     "build": "gulp",
+    "clean": "gulp clean",
     "release-minor": "npm version minor",
     "release-patch": "npm version patch"
   }
