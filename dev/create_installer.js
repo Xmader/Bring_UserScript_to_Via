@@ -3,7 +3,7 @@ const path = require("path")
 const ViaScript = require("../dist/via_script.bundle.js")
 
 const content = fs.readFileSync(
-    path.resolve(__dirname, "../dist/Bring_UserScript_to_ViaBrowser.js")
+    path.resolve(__dirname, "../dist/Bring_UserScript_to_ViaBrowser.BabelCompiled.js")
 ).toString()
 
 const id = "65535"
@@ -41,5 +41,5 @@ init()
 
 fs.writeFileSync(
     path.resolve(__dirname, "../dist/installer.js"),
-    installation.replace(/\n/g,"\r\n")
+    installation.replace(/\n/g, "\r\n")
 )

@@ -2,6 +2,7 @@ const gulp = require("gulp")
 const rollup = require("rollup")
 const babel = require("gulp-babel")
 const rename = require("gulp-rename")
+const header = require("gulp-header");
 const { spawn } = require("child_process")
 const del = require("del")
 
@@ -25,6 +26,7 @@ gulp.task("build:main", async function () {
 gulp.task("build:main:babel", () => {
     return gulp.src(["dist/Bring_UserScript_to_ViaBrowser.js"])
         .pipe(babel())
+        .pipe(header(metainfo.replace(/\n/g, "\r\n")))
         .pipe(rename({ extname: ".BabelCompiled.js" }))
         .pipe(gulp.dest("dist"))
 })
