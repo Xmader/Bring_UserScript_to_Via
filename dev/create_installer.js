@@ -41,5 +41,5 @@ init()
 
 fs.writeFileSync(
     path.resolve(__dirname, "../dist/installer.js"),
-    installation
+    installation.replace(/\n/g,"\r\n")
 )

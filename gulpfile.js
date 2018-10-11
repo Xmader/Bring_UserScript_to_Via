@@ -1,6 +1,7 @@
 const gulp = require("gulp")
 const rollup = require("rollup")
-const babel = require("rollup-plugin-babel")
+const babel = require("gulp-babel")
+const rename = require("gulp-rename")
 const { spawn } = require("child_process")
 const del = require("del")
 
@@ -21,18 +22,11 @@ gulp.task("build:main", async function () {
     await bundle.write(main_build_options)
 })
 
-gulp.task("build:main:babel", async function () {
-    const bundle = await rollup.rollup({
-        input: "main.js",
-        plugins: [
-            babel()
-        ]
-    })
-
-    await bundle.write({
-        ...main_build_options,
-        file: "dist/Bring_UserScript_to_ViaBrowser.BabelCompiled.js"
-    })
+gulp.task("build:main:babel", () => {
+    return gulp.src(["dist/Bring_UserScript_to_ViaBrowser.js"])
+        .pipe(babel())
+        .pipe(rename({ extname: ".BabelCompiled.js" }))
+        .pipe(gulp.dest("dist"))
 })
 
 gulp.task("build:via_script.bundle.js", async function () {

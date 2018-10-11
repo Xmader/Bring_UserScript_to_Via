@@ -1,6 +1,6 @@
 {
   "name": "bring_userscript_to_via",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "将 UserScript/油猴脚本 带到Via浏览器",
   "main": "main.js",
   "repository": {
@@ -16,11 +16,13 @@
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
+    "babel-preset-minify": "^0.5.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-rename": "^1.4.0",
     "http-server": "Xmader/http-server",
-    "rollup": "^0.66.5",
-    "rollup-plugin-babel": "^4.0.3"
+    "rollup": "^0.66.5"
   },
   "scripts": {
     "dev": "http-server --cors -p 8083 -c-1 -s",

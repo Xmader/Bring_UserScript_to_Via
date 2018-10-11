@@ -5,6 +5,9 @@
             {
                 "modules": false
             }
-        ]
-    ]
+        ],
+        "minify"
+    ],
+    "comments": false,
+    "compact": true
 }
